@@ -1,0 +1,18 @@
+# Cloudflare Pages 并列 CORS 用于 SZI (Synchronized Zoom Image) Range 请求
+# 这个文件应该放在站点根目录（与 _config.yml 同级），
+# Cloudflare Pages 构建时会自动应用这些规则到部署的站点
+
+# 为 /maps 目录下的所有资源暴露 Content-Range 头（用于 SZI Range 请求）
+/maps/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: Content-Range
+
+# （可选）如果需要更严格的跨域隔离，改为：
+# /maps/*
+#   Access-Control-Allow-Origin: https://your-domain.com
+#   Access-Control-Expose-Headers: Content-Range, Content-Type
+
+# 或者对所有资源通用设置（不推荐，仅用于测试调试）
+# /*
+#  Access-Control-Allow-Origin: *
+#  Access-Control-Expose-Headers: Content-Range
