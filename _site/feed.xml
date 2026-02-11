@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-02-11T23:35:21+08:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Line Maps by Chitose</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">线路图更新计划</title><link href="http://0.0.0.0:4000/news/2026/02/10/update-plan.html" rel="alternate" type="text/html" title="线路图更新计划" /><published>2026-02-10T00:00:00+08:00</published><updated>2026-02-10T00:00:00+08:00</updated><id>http://0.0.0.0:4000/news/2026/02/10/update-plan</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/02/10/update-plan.html"><![CDATA[<p>在本文档中，我们将为您介绍本站未来的更新方向。</p>
+
+<h2 id="1-2025---2026">1. 2025 -&gt; 2026</h2>
+<p>由于本站的线路图项目在2025年9月份开始，拖延到了2026年才继续，我们创作的2025年版线路图实质上已经过期了（悲）。所以我们将在未来陆续用2026版替换掉2025版线路图。同时，我们的未来预测线路图也会更新至2028或2029年左右的版本。</p>
+
+<h2 id="2-拓展城市范围">2. 拓展城市范围</h2>
+<p>以下是一些城市候选（无特别顺序），我们可能会制作它们的线路图。</p>
+
+<ul>
+  <li>广州</li>
+  <li>成都</li>
+  <li>苏州</li>
+  <li>杭州</li>
+  <li>南京</li>
+  <li>香港 和 深圳</li>
+  <li>澳门</li>
+  <li>东京</li>
+</ul>
+
+<p>如果您有特别的推荐，或者有制作上的建议，欢迎以电子邮件或社交媒体私信我们，详情请查看本站<a href="/#contact">主页的联系方式</a>。我们并不是专业的设计师，大家的建议将帮助我们改善线路图质量。</p>
+
+<p>感谢各位的支持，也祝各位2026新年快乐。</p>
+
+<p>Mizuki<br />
+Project Chitose</p>]]></content><author><name></name></author><category term="news" /><summary type="html"><![CDATA[在本文档中，我们将为您介绍本站未来的更新方向。]]></summary></entry><entry><title type="html">欢迎来到 Chitose.City</title><link href="http://0.0.0.0:4000/news/2026/02/09/welcome.html" rel="alternate" type="text/html" title="欢迎来到 Chitose.City" /><published>2026-02-09T00:00:00+08:00</published><updated>2026-02-09T00:00:00+08:00</updated><id>http://0.0.0.0:4000/news/2026/02/09/welcome</id><content type="html" xml:base="http://0.0.0.0:4000/news/2026/02/09/welcome.html"><![CDATA[<p>你好，这里是千岁计划的官方网站。目前，我们使用它展示我们过去和现在制作的城市交通线路图。您可以预览、下载线路图，并且在非商用项目里使用它们。</p>
+
+<p>开设本站是为了让大家可以方便的查看、使用我们创作的线路图，它们对比其他创作者的绘图风格或许已经有了一定的独特性。</p>
+
+<p>由于我们不是专业的程序员（本网站由一个人类 + Github Copilot 制作），本网站的使用体验可能会有一些问题，考虑到我们非专业小团体的定位，还请谅解。不过网页设计上我绘制了完整的原型图，并且阻止了AI乱搞。您不会应该感受到任何“AI味”。</p>
+
+<p>当然，如果您在浏览本站时遇到了任何问题、有绘图上的建议、或者想要讨论线路图相关内容，都欢迎通过电子邮箱或者小红书私信联系我们，详情请查看本站<a href="/#contact">主页的联系方式</a>。</p>
+
+<p>Mizuki<br />
+Project Chitose</p>]]></content><author><name></name></author><category term="news" /><summary type="html"><![CDATA[你好，这里是千岁计划的官方网站。目前，我们使用它展示我们过去和现在制作的城市交通线路图。您可以预览、下载线路图，并且在非商用项目里使用它们。]]></summary></entry><entry><title type="html">上海线路图现已更新 v1.3</title><link href="http://0.0.0.0:4000/news/update/2025/09/07/shanghai-update-1.3.html" rel="alternate" type="text/html" title="上海线路图现已更新 v1.3" /><published>2025-09-07T00:00:00+08:00</published><updated>2025-09-07T00:00:00+08:00</updated><id>http://0.0.0.0:4000/news/update/2025/09/07/shanghai-update-1.3</id><content type="html" xml:base="http://0.0.0.0:4000/news/update/2025/09/07/shanghai-update-1.3.html"><![CDATA[]]></content><author><name></name></author><category term="news" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry></feed>

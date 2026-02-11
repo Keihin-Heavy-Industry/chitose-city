@@ -1,0 +1,250 @@
+---
+layout: index
+id: index
+---
+
+    <section id="map-displays">
+        {% for city in site.data.cities %}
+        <div id="map-{{ city.id }}" class="map-display {% if forloop.first %}active{% endif %}" data-city="{{ city.id }}" data-index="{{ forloop.index0 }}" data-name="{{ city.name }}" data-name-en="{{ city.nameEn }}" data-bar-img="assets/cities/{{ city.id }}.svg">
+            <div class="the-map" style="background-image: url(assets/images/map-thumbnail/{{ city.map }});"></div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section id="map-footer">
+        <div id="map-info-footer" class="city">
+            <div class="city-name">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="city-bar">
+                <img src="" alt="">
+            </div>
+        </div>
+        <div id="page-indicator">
+            <div id="left-arrow-button">
+                <img src="assets/icon/arrow-right.svg" style="transform: rotateZ(180deg);" alt="">
+            </div>
+            {% for city in site.data.cities %}
+            <div class="page {% if forloop.first %}this-page{% endif %}" data-page="{{ forloop.index0 }}"></div>
+            {% endfor %}
+            <div id="right-arrow-button">
+                <img src="assets/icon/arrow-right.svg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <div class="break"></div>
+
+    <section id="main">
+        <div id="news">
+            <div class="sect-title sect-title-open">
+                <h1>新闻</h1>
+                <a href="/news">
+                    <img src="assets/icon/open.svg" alt="| 打开">
+                </a>
+            </div>
+            <div id="news-list">
+                {% assign posts = site.posts | where_exp: "item", "item.path contains 'news/_posts'" | where_exp: "item", "item.categories contains 'news'" |  where_exp: "item", "item.hidden != true"  | sort: "date" | reverse | limit: 3 %}
+                {% for post in posts %}
+                <a class="news-container no-a" href="{{post.url}}">
+                    <div id="post-title-row" class="fl-row fl-nw gap-6">
+                    {% if post.categories contains "update" %}
+                        <span style="display:inline-block;width:12px;background:{{ post.color }};vertical-align:middle;border-radius:2px"></span>
+                    {% endif %}
+                        <h2 class="news-title">{{ post.title }}</h2>  
+                    </div>
+                    <p class="news-desc">{{ post.desc }}</p>
+                    <div class="news-info">
+                        <span class="news-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+                        <div class="news-type ai-center">
+                            <div class="news-type-icon" style="{% if post.categories contains 'update' %}background-color: #E8CA24;{% elsif post.categories contains 'event' %}background-color: #25B592;{% else %}background-color: #2462E8{% endif %}"></div>
+                            <span class="lh-120">
+                                {% if post.categories contains 'update' %}更新
+                                {% elsif post.categories contains 'event' %}活动
+                                {% else %}公告
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="all-maps">
+            <div class="sect-title">
+                <h1>所有线路图</h1>
+                <span class="g1">按照字母排序。</span>
+            </div>
+            <div id="maps-list" class="fl-row fl-w gap-24">
+                {% assign cities = site.data.cities | where_exp: "item", "item.hidden_from_list != true" | sort: "id" %}
+                {% assign current_letter = "" %}
+                {% for city in cities %}
+                    {% assign first_letter = city.id | slice: 0 | upcase %}
+                    {% if first_letter != current_letter %}
+                        {% if current_letter != "" %}
+                            </div>
+                        {% endif %}
+                        {% assign current_letter = first_letter %}
+                        <div class="maps-section fl-col">
+                            <h2 class="g1">{{ current_letter }}</h2>
+                    {% endif %}
+                    <a class="city no-a" href="maps/{{ city.id }}">
+                        <div class="city-name">
+                            <span>{{ city.name }}</span>
+                            <span>{{ city.nameEn }}</span>
+                        </div>
+                        <div class="city-bar">
+                            <img src="assets/cities/{{ city.id }}.svg" alt="{{ city.name }}">
+                        </div>
+                    </a>
+                {% endfor %}
+                    </div>
+            </div>
+        </div>
+        <div class="fl-row fl-w gap-24 two-row">
+            <div id="support-us" class="maps-section">
+                <div class="sect-title">
+                    <h1>支持我们</h1>
+                    <span class="g1">感谢您的支持。</span>
+                </div>
+                <p class="sect-content">关注我们的 <a href="https://xhslink.com/m/80y7JhYWlgp">小红书</a> <br> 一些奇怪的都市交通周边产品 - <a href="https://m.tb.cn/h.7v8jZdKAVGekBu2">淘宝</a></p>            
+            </div>
+            <div id="contact" class="maps-section">
+                <div class="sect-title">
+                    <h1>联系</h1>
+                    <span class="g1">建议、交流什么的都可以。</span>
+                </div>           
+                <p class="sect-content">通过社交媒体 -  <a href="https://xhslink.com/m/80y7JhYWlgp">小红书</a> <br> 电子邮件 - <a href="mailto:hello@chitose.city">hello@chitose.city</a></p>            
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Slideshow functionality
+        const mapDisplays = document.querySelectorAll('.map-display');
+        const pageIndicator = document.querySelectorAll('#page-indicator .page');
+        const leftArrowBtn = document.getElementById('left-arrow-button');
+        const rightArrowBtn = document.getElementById('right-arrow-button');
+        const mapInfoFooter = document.getElementById('map-info-footer');
+        
+        let currentIndex = 0;
+        const totalPages = mapDisplays.length;
+        let autoPlayTimer;
+
+        function updateInfoFooter(index) {
+            // 从 data 属性获取城市信息
+            const currentDisplay = mapDisplays[index];
+            const cityName = currentDisplay.dataset.name;
+            const cityNameEn = currentDisplay.dataset.nameEn;
+            const barImg = currentDisplay.dataset.barImg;
+            
+            const footerNameSpans = mapInfoFooter.querySelectorAll('.city-name span');
+            const footerImg = mapInfoFooter.querySelector('.city-bar img');
+            
+            if (footerNameSpans[0]) {
+                footerNameSpans[0].textContent = cityName;
+            }
+            if (footerNameSpans[1]) {
+                footerNameSpans[1].textContent = cityNameEn;
+            }
+            if (footerImg) {
+                footerImg.src = barImg;
+                footerImg.alt = cityName;
+            }
+        }
+
+        function showSlide(index, isManual = false) {
+            if (index === currentIndex) return;
+
+            // 根据是否手动触发，选择动画时长（手动为 0.5s，自动为 1s）
+            const animationDuration = isManual ? 500 : 1000;
+            const cssTransition = isManual ? '0.5s' : '1s';
+
+            // 临时改变 CSS 过渡时长
+            mapDisplays.forEach(slide => {
+                slide.style.transition = `opacity ${cssTransition} ease-in-out`;
+            });
+            mapInfoFooter.style.transition = `opacity ${cssTransition} ease-in-out`;
+
+            // fade out current slide and footer
+            const prev = mapDisplays[currentIndex];
+            prev.classList.remove('active');
+            mapInfoFooter.style.opacity = '0';
+
+            // after fade-out, activate next and fade in
+            setTimeout(() => {
+                // ensure no other slides marked active
+                mapDisplays.forEach(s => s.classList.remove('active'));
+                const next = mapDisplays[index];
+                next.classList.add('active');
+
+                // update page indicators
+                pageIndicator.forEach((page, i) => {
+                    page.classList.toggle('this-page', i === index);
+                });
+
+                // update footer content then fade in
+                updateInfoFooter(index);
+                setTimeout(() => { mapInfoFooter.style.opacity = '1'; }, 50);
+
+                currentIndex = index;
+                resetAutoPlay();
+            }, animationDuration);
+        }
+
+        function nextSlide(isManual = false) {
+            const newIndex = (currentIndex + 1) % totalPages;
+            showSlide(newIndex, isManual);
+        }
+
+        function prevSlide(isManual = false) {
+            const newIndex = (currentIndex - 1 + totalPages) % totalPages;
+            showSlide(newIndex, isManual);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = setInterval(nextSlide, 10000);
+        }
+
+        function playButtonAnimation(button) {
+            button.classList.add('click-animate');
+            setTimeout(() => {
+                button.classList.remove('click-animate');
+            }, 300);
+        }
+
+        // Event listeners for arrow buttons
+        leftArrowBtn.addEventListener('click', () => {
+            playButtonAnimation(leftArrowBtn);
+            prevSlide(true);
+        });
+        rightArrowBtn.addEventListener('click', () => {
+            playButtonAnimation(rightArrowBtn);
+            nextSlide(true);
+        });
+
+        // Event listeners for page indicator dots
+        pageIndicator.forEach((page, index) => {
+            page.addEventListener('click', () => showSlide(index, true));
+        });
+
+        // Event listeners for map displays
+        mapDisplays.forEach((map) => {
+            map.addEventListener('click', () => {
+                const cityId = map.dataset.city;
+                if (cityId !== 'kinako') {
+                    window.location.href = `/maps/${cityId}/`;
+                }
+            });
+        });
+
+        // Initialize first slide
+        updateInfoFooter(0);
+        mapInfoFooter.style.transition = 'opacity 1s ease-in-out';
+        mapInfoFooter.style.opacity = '1';
+
+        // Start auto play
+        resetAutoPlay();
+    </script>

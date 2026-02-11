@@ -1,0 +1,317 @@
+/* 城市详情页面样式 */
+
+#main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+/* 预览部分 */
+
+#preview-section {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 16px;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.preview-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    min-width: 150px;
+}
+
+.release-selector {
+    min-width: 250px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.release-selector select {
+    width: 12rem;
+    padding: 6px;
+    border: 1px solid var(--gray-2);
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    font-family: 'LineMapsFont';
+}
+
+.release-selector select:hover {
+    border-color: var(--gray-1);
+}
+
+.release-selector option {
+    font-family: 'LineMapsFont';
+}
+
+.release-description {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* OpenSeadragon 容器 */
+#openseadragon-container {
+    width: 100%;
+    height: 600px;
+    border: 1px solid var(--gray-2);
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+}
+
+/* 简介部分 */
+
+.intro-content {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.intro-list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 32px;
+    align-items: center;
+    max-width: calc(329px + 329px + 32px);
+}
+
+
+/* 下载部分 */
+#download-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+/* 下载容器和年份分组 */
+.download-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.download-year-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.year-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-1);
+}
+
+.year-header span {
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.year-box {
+    width: 12px;
+    height: 28px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* 下载卡片 */
+.download-card {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--gray-1);
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.download-year-group .download-card:first-of-type {
+    border-top: 1px solid var(--gray-1);
+}
+
+/* 卡片行样式 */
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-main {
+    padding: 8px 12px;
+    transition: all 0.2s;
+}
+
+.card-main:hover {
+    background-color: var(--gray-4);
+    transition: all 0.2s;
+}
+
+.card-download {
+    padding: 0 12px 0px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .4s linear;
+}
+
+.card-download.active {
+    max-height: 50px;
+    padding: 0 12px 8px;
+    transition: all .4s linear;
+}
+
+
+/* 卡片内容 */
+.card-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.card-icons img {
+    height: 24px;
+    object-fit: contain;
+}
+
+/* 下载信息行 */
+.download-info, .links-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.format-link {
+    color: var(--gray-1);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.license-note {
+    font-size: 14px;
+}
+
+/* 简介部分 */
+
+
+/* 更新历史部分 */
+
+#history-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.history-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gray-1);
+}
+
+.version-number {
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.history-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.history-brief {
+    padding: 12px;
+}
+
+/* 响应式设计 */
+@media (max-width: 920px) {
+
+}
+
+@media (max-width: 760px) {
+    .intro-list {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 24px;
+        align-items: center;
+    }    
+
+    /* The outer container */
+    .intro-content {
+        display: flex;
+        max-width: 329px;
+        width: 100%; /* Ensure the base container has a defined width */
+        margin: auto;
+    }
+
+    /* The inner container */
+    .intro-list {
+        flex: 1;      /* This tells the div to grow and fill all available space */
+        width: 100%;  /* Backup for older browsers */
+    }
+
+    /* The images */
+    .intro-list img {
+        /* Tell each image to take up an equal share of the row */
+        flex: 1;
+        /* Force the width to fill its share */
+        width: 100%;
+        /* Keep the image from distorting */
+        height: auto;
+        /* Important for SVGs to ensure they don't collapse */
+        min-width: 1px; 
+    }
+}
+
+@media (max-width: 690px) {
+    #openseadragon-container {
+        height: 300px;
+    }
+    .card-download {
+        flex-flow: column nowrap;
+        gap: 2px;
+        align-items: flex-start;
+    }
+    .card-download.active {
+        max-height: 80px;
+        padding: 0 12px 8px;
+        transition: all .4s linear;
+    }    
+}

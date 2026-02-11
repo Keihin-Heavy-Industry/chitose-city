@@ -1,0 +1,69 @@
+---
+layout: default
+id: maps
+title: 线路图 Maps
+featured: [shanghai, beijing, chongqing]
+---
+
+<section id="main">
+
+    <div id="featured-maps">
+    <div class="sect-title">
+        <h1>精选</h1>
+        <span class="g1">最有趣的线路图们。</span>
+    </div>
+    <div id="maps-list" class="fl-row fl-w gap-24">
+        {% for city_id in page.featured %}
+            {% assign city = site.data.cities | where: "id", city_id | first %}
+            {% if city %}
+            <a class="city no-a" href="{{site.baseurl}}/maps/{{ city.id }}">
+                <div class="map-thumbnail">
+                    <img src="{{site.baseurl}}/assets/images/map-thumbnail/{{ city.id }}.svg" alt="{{ city.name }}">
+                </div>
+                <div class="city-name">
+                    <span>{{ city.name }}</span>
+                    <span>{{ city.nameEn }}</span>
+                </div>
+                <div class="city-bar">
+                    <img src="{{site.baseurl}}/assets/cities/{{ city.id }}.svg" alt="{{ city.name }}">
+                </div>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+
+    <div class="break"></div>
+
+    <div id="all-maps">
+    <div class="sect-title">
+        <h1>所有线路图</h1>
+        <span class="g1">按照字母排序。</span>
+    </div>
+    <div id="maps-list" class="fl-row fl-w gap-24">
+        {% assign cities = site.data.cities | where_exp: "item", "item.id != 'kinako'" | sort: "id" %}
+        {% assign current_letter = "" %}
+        {% for city in cities %}
+            {% assign first_letter = city.id | slice: 0 | upcase %}
+            {% if first_letter != current_letter %}
+                {% if current_letter != "" %}
+                    </div>
+                {% endif %}
+                {% assign current_letter = first_letter %}
+                <div class="maps-section fl-col">
+                    <h2 class="g1">{{ current_letter }}</h2>
+            {% endif %}
+            <a class="city no-a" href="{{site.baseurl}}/maps/{{ city.id }}">
+                <div class="city-name">
+                    <span>{{ city.name }}</span>
+                    <span>{{ city.nameEn }}</span>
+                </div>
+                <div class="city-bar">
+                    <img src="{{site.baseurl}}/assets/cities/{{ city.id }}.svg" alt="{{ city.name }}">
+                </div>
+            </a>
+        {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

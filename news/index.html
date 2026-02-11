@@ -1,0 +1,40 @@
+---
+layout: default
+id: news
+title: 新闻 News
+---
+
+<section id="main">
+    <div id="news">
+            <div class="sect-title">
+                <h1>新闻</h1>
+            </div>
+            <div id="news-list">
+                {% assign posts = site.posts | where_exp: "item", "item.path contains 'news/_posts'" | where_exp: "item", "item.categories contains 'news'" | where_exp: "item", "item.hidden != true" | sort: "date" | reverse %}
+                {% for post in posts %}
+                <a class="news-container no-a" href="{{post.url}}">
+                    <div id="post-title-row" class="fl-row fl-nw gap-6">
+                    {% if post.categories contains "update" %}
+                        <span style="display:inline-block;width:12px;background:{{ post.color }};vertical-align:middle;border-radius:2px"></span>
+                    {% endif %}
+                        <h2 class="news-title">{{ post.title }}</h2>  
+                    </div>
+                    <p class="news-desc">{{ post.desc }}</p>
+                    <div class="news-info">
+                        <span class="news-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+                        <div class="news-type ai-center">
+                            <div class="news-type-icon" style="{% if post.categories contains 'update' %}background-color: #E8CA24;{% elsif post.categories contains 'event' %}background-color: #25B592;{% else %}background-color: #2462E8{% endif %}"></div>
+                            <span class="lh-120">
+                                {% if post.categories contains 'update' %}更新
+                                {% elsif post.categories contains 'event' %}活动
+                                {% else %}公告
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+</section>
+

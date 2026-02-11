@@ -1,0 +1,270 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} / Line Maps by Project Chitose / 由千岁计划绘制的线路图</title>
+
+    <!-- 搜索引擎优化项目 -->    
+    <meta name="description" content="{{page.desc}}">
+    <meta name="keywords" content="{{page.keywords}}">
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/global.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/city-detail.css">
+
+    <link rel="icon" href="{{ site.baseurl }}/favicon.svg">
+
+    <style>
+        #logo-bar {
+            width: 12px;
+            height: 29px;
+            background: {% if page.logo_bar %}url({{site.baseurl}}/assets/logo-bar/{{ page.logo_bar }}){% else %}url({{site.baseurl}}/assets/logo-bar/empty.svg){% endif %};
+        }        
+    </style>
+</head>
+<body>
+    <script>
+        // 检查用户是否已完成 onboarding
+        if (!localStorage.getItem('onboardingCompleted')) {
+            // 如果当前不在 onboarding 页面，保存当前页面地址并跳转到 onboarding 页面
+            if (!window.location.pathname.includes('onboarding')) {
+                localStorage.setItem('intendedPage', window.location.pathname);
+                window.location.href = '/onboarding';
+            }
+        }
+    </script>
+    {% include navbar.html %}
+        <script src="{{ site.baseurl }}/assets/openseadragon/openseadragon.min.js"></script>
+        {% assign versions = site.data.versions[page.city_id] %}
+        {% assign city = site.data.cities | where: "id", page.city_id | first %}
+        <section id="main">
+            <div id="city-header" class="city">
+                <div class="city-name">
+                    <span>{{ city.name }}</span>
+                    <span>{{ city.nameEn }}</span>
+                </div>
+                <div class="city-bar">
+                    <img src="{{ site.baseurl }}/assets/cities/{{ page.city_id }}.svg" alt="{{ city.name }}">
+                </div>
+            </div>
+
+            <!-- 预览和版本选择 -->
+            <section id="preview-section">
+                <div class="sect-title">
+                    <h1>预览</h1>
+                </div>
+                
+                <!-- OpenSeadragon 容器 -->
+                <div id="openseadragon-container"></div>
+
+                <div class="release-selector">
+                    <select id="releaseSelect">
+                        {% for release_key in versions.releases %}
+                            <option value="{{ release_key[0] }}">{{ release_key[1].name }}</option>
+                        {% endfor %}
+                    </select>
+                    <p class="release-description" id="releaseDesc">
+                        {% assign first_release = versions.releases | first %}
+                        {{ first_release[1].description }}
+                    </p>
+                </div>                
+            </section>
+
+            <div class="break"></div>
+
+            <!-- 简介部分 -->
+            <section id="intro-section">
+                <div class="sect-title">
+                    <h1>简介</h1>
+                </div>
+                <div class="intro-content">
+                    {{ content }}
+                </div>
+            </section>
+
+            <div class="break"></div>
+
+            <!-- 下载部分 -->
+            <section id="download-section">
+                <div class="sect-title">
+                    <h1>所有版本</h1>
+                    <span class="g1">点按版本即可下载线路图。</span>
+                </div>
+                <div class="download-container">
+                    {% assign current_year = "" %}
+                    {% for download_key in versions.downloads %}
+                        {% assign download = download_key[1] %}
+                        
+                        {% if download.year != current_year %}
+                            {% if current_year != "" %}</div>{% endif %}
+                            <div class="download-year-group">
+                                <div class="year-header">
+                                    <div class="year-box" style="background: {{ city.year_color }};"></div>                                    
+                                    <span>{{ download.year }}</span>
+                                </div>
+                            {% assign current_year = download.year %}
+                        {% endif %}
+                        
+                        <div class="download-card" data-download="{{ download_key[0] }}">
+                            <div class="card-row card-main">
+                                <span class="card-name">{{ download.name }}</span>
+                                <div class="card-icons">
+                                    {% for icon_type in download.include %}
+                                            <img src="{{ site.baseurl }}/assets/icon/{{ page.city_id }}/{{ icon_type }}.svg" alt="{{ icon_type }}" class="icon-{{ icon_type }}">
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="card-row card-download">
+                                <div class="download-info g1">
+                                    <span>下载</span>
+                                    <div class="links-container">
+                                        <a href="{{ download.assets.png }}" download class="format-link g1 fl-row gap-6 ai-center">
+                                            <img src="{{ site.baseurl }}/assets/icon/download.svg" alt="下载" class="download-icon">
+                                            <span>PNG <br> <span style="font-weight: 400;font-size: 14px;">10000*10000px</span></span>
+                                        </a>
+                                            <a href="{{ download.assets.pdf }}" download class="format-link g1 fl-row gap-6 ai-center">
+                                            <img src="{{ site.baseurl }}/assets/icon/download.svg" alt="下载" class="download-icon">
+                                            <span>PDF</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <span class="license-note g1">下载代表您同意<a class="g1" href="{{ site.baseurl }}/maps-terms">条款</a>。</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if current_year != "" %}</div>{% endif %}
+                </div>
+            </section>
+
+            <!-- 更新历史 -->
+            <section id="history-section">
+                <div class="sect-title">
+                    <h1>更新历史</h1>
+                </div>
+                <div class="history-list">
+                    {% for history_item in versions.history %}
+                    <div class="history-item">
+                        <div class="history-header">
+                            <h1 class="version-number">{{ history_item.version }}</h1>
+                            <div class="history-meta">
+                                <span class="version-badge {% if history_item.type == "beta" %}beta{% else %}release{% endif %} g1">
+                                    {% if history_item.type == "beta" %}测试版{% else %}正式版{% endif %}
+                                </span>
+                                <span class="history-date g1">{{ history_item.date }}</span>
+                            </div>
+                        </div>
+                        <div class="history-brief">
+                            <p>{{ history_item.brief }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <p class="g1 bottom-note">*本页面出现的所有公共运输企业标志、商标等均由相关企业所有。</p>
+        </section>
+
+        <script>
+            // 等待页面加载完成后初始化 OpenSeadragon
+            document.addEventListener('DOMContentLoaded', function() {
+                // OpenSeadragon 配置 - 使用 .szi 字段作为地图源
+                const versionData = {
+                    {% for release_key in versions.releases %}
+                        "{{ release_key[0] }}": "{{ release_key[1].szi }}"{% if forloop.last == false %},{% endif %}
+                    {% endfor %}
+                };
+
+                let viewer = OpenSeadragon({
+                    id: "openseadragon-container",
+                    prefixUrl: "{{ site.baseurl }}/assets/openseadragon/images/",
+                    // 初始不直接传 tileSources，后面用 SziTileSource 异步打开
+                    showFullPageButton: false,
+                    showRotationControl: false,
+                    animationTime: 0.3,
+                    blendTime: 0.05,
+                    springStiffness: 5.0,
+                    constrainDuringPan: true,
+                    maxZoomPixelRatio: 2,
+                    minZoomImageRatio: 0.5,
+                    visibilityRatio: 0.9,
+                    showNavigator: false,
+                    navigatorPosition: "BOTTOM_LEFT",
+                    gestureSettingsMouse: {
+                        scrollToZoom: true
+                    },
+                    gestureSettingsTouch: {
+                        pinchToZoom: true,
+                        clickToZoom: false
+                    }
+                });
+
+                // 动态导入 SZI 模块并注册到 OpenSeadragon，然后打开初始 .szi
+                const sziModuleUrl = "{{ site.baseurl }}/assets/openseadragon/szi-tile-source-v0.7.0.js";
+                const initialKey = Object.keys(versionData)[0];
+                const loadSziModule = () => import(sziModuleUrl).then(mod => {
+                    if (mod && mod.enableSziTileSource) mod.enableSziTileSource(OpenSeadragon);
+                    return OpenSeadragon.SziTileSource;
+                });
+
+                if (initialKey) {
+                    const initialSzi = versionData[initialKey];
+                    loadSziModule().then(Szi => {
+                        if (Szi && Szi.createSziTileSource) {
+                            Szi.createSziTileSource(initialSzi).then(ts => viewer.open(ts)).catch(err => console.error('打开 SZI 失败', err));
+                        } else {
+                            try { viewer.open(initialSzi); } catch(e) { console.error(e); }
+                        }
+                    }).catch(err => {
+                        console.error('加载 SZI 模块失败', err);
+                        try { viewer.open(initialSzi); } catch(e) { console.error(e); }
+                    });
+                }
+
+                // 预览版本选择器
+                const releaseSelect = document.getElementById('releaseSelect');
+                const releaseDesc = document.getElementById('releaseDesc');
+
+                releaseSelect.addEventListener('change', function() {
+                    const selectedRelease = this.value;
+                    const sziSource = versionData[selectedRelease];
+                    loadSziModule().then(Szi => {
+                        if (Szi && Szi.createSziTileSource) {
+                            Szi.createSziTileSource(sziSource).then(ts => viewer.open(ts)).catch(err => console.error('打开 SZI 失败', err));
+                        } else {
+                            try { viewer.open(sziSource); } catch(e) { console.error(e); }
+                        }
+                    }).catch(err => {
+                        console.error('加载 SZI 模块失败', err);
+                        try { viewer.open(sziSource); } catch(e) { console.error(e); }
+                    });
+                    
+                    // 更新描述文本
+                    const descriptions = {
+                        {% for release_key in versions.releases %}
+                            "{{ release_key[0] }}": "{{ release_key[1].description }}"{% if forloop.last == false %},{% endif %}
+                        {% endfor %}
+                    };
+                    releaseDesc.textContent = descriptions[selectedRelease];
+                });
+
+                // 下载卡片展开折叠功能
+                const downloadCards = document.querySelectorAll('.download-card');
+                downloadCards.forEach(card => {
+                    const cardMain = card.querySelector('.card-main');
+                    const cardDownload = card.querySelector('.card-download');
+                    
+                    cardMain.addEventListener('click', function() {
+                        cardDownload.classList.toggle('active');
+                    });
+                });
+            });
+        </script>
+    
+    <div id="slogan" class="fl-row fl-nw gap-12 jc-center two-row">
+        <span>现代的城市交通线网图</span>
+        <span>Modern Urban Transit Line Maps</span>
+    </div>
+    {% include footer.html %}
+</body>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线路图 Maps / Line Maps by Project Chitose / 由千岁企划绘制的线路图</title>
+
+    <!-- 搜索引擎优化项目 -->    
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- 字体预加载 -->
+    <link rel="preload" href="/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/IBMPlexSansSC-Text.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Geist-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/IBMPlexSansSC-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/maps.css">
+
+    <link rel="icon" href="/favicon.svg">
+
+    <style>
+        #logo-bar {
+            width: 12px;
+            height: 29px;
+            background: url(/assets/logo-bar/empty.svg);
+        }        
+    </style>
+</head>
+<body>
+    <script>
+        // 检查用户是否已完成 onboarding
+        if (!localStorage.getItem('onboardingCompleted')) {
+            // 如果当前不在 onboarding 页面，保存当前页面地址并跳转到 onboarding 页面
+            if (!window.location.pathname.includes('onboarding')) {
+                localStorage.setItem('intendedPage', window.location.pathname);
+                window.location.href = '/onboarding';
+            }
+        }
+    </script>
+    <nav>
+    <div id="nav-left-container">
+        <a id="logo-container" class="no-a" href="/">
+            <div id="logo">
+                <div id="logo-bar"></div>
+                <img src="/assets/images/logo.svg" alt="Line Maps">
+            </div>
+            <img src="/assets/images/byChitose.svg" alt="">
+        </a>
+        <div id="pc-nav-list" class="nav-list">
+            <a class="nav-item" href="/">
+                <span>首页</span>
+                <span>HOME</span>
+            </a>
+            <a class="nav-item" href="/maps">
+                <span>线路图</span>
+                <span>MAPS</span>
+            </a>
+            <a class="nav-item" href="/news">
+                <span>新闻</span>
+                <span>NEWS</span>
+            </a>
+        </div>
+    </div>
+    <form action="https://www.bing.com/search" method="get" target="_blank" class="search-container" id="searchForm">
+        <input type="text" name="q" class="search-input" id="searchBox" placeholder="">
+        
+        <button type="submit" class="search-button">搜索</button>
+    </form>
+
+    <button id="menu-button">
+        <img src="/assets/icon/menu.svg" alt="MENU">
+    </button>
+</nav>
+
+<div id="mobile-menu">
+    <div id="mobile-nav-list" class="nav-list">
+        <a class="nav-item" href="/">
+            <span>首页</span>
+            <span>HOME</span>
+        </a>
+        <a class="nav-item" href="/maps">
+            <span>线路图</span>
+            <span>MAPS</span>
+        </a>
+        <a class="nav-item" href="/news">
+            <span>新闻</span>
+            <span>NEWS</span>
+        </a>
+        <!-- <a class="nav-item">
+            <span>搜索</span>
+            <span>SEARCH</span>
+        </a> -->
+    </div>        
+</div>
+
+<script>
+    // 在提交前，自动加上 site: 限制条件，但不修改搜索框本身的显示
+    document.getElementById('searchForm').onsubmit = function(e) {
+        e.preventDefault();
+        var box = document.getElementById('searchBox');
+        var originalValue = box.value;
+        if (originalValue.trim() !== "") {
+            // 构造包含site的搜索URL，搜索框本身值保持不变
+            var searchUrl = "https://www.bing.com/search?q=" + encodeURIComponent(originalValue + " site:chitose.city");
+            window.open(searchUrl, '_blank');
+        }
+        return false;
+    };
+    
+    // 菜单按钮切换功能
+    document.getElementById('menu-button').addEventListener('click', function() {
+        var mobileMenu = document.getElementById('mobile-menu');
+        var menuButton = document.getElementById('menu-button')
+        var menuImg = menuButton.querySelector('img');
+        mobileMenu.classList.toggle('active');
+        menuButton.classList.toggle('active');
+        
+        // 根据active状态改变img的src
+        if (menuButton.classList.contains('active')) {
+            menuImg.src = '/assets/icon/menu-close.svg';
+        } else {
+            menuImg.src = '/assets/icon/menu.svg';
+        }
+    });
+    
+    // 监听窗口宽度变化，当菜单为active状态时取消
+    window.addEventListener('resize', function() {
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+</script>
+
+    <section id="main">
+
+    <div id="featured-maps">
+    <div class="sect-title">
+        <h1>精选</h1>
+        <span class="g1">最有趣的线路图们。</span>
+    </div>
+    <div id="maps-list" class="fl-row fl-w gap-24">
+        
+            
+            
+            <a class="city no-a" href="/maps/shanghai">
+                <div class="map-thumbnail">
+                    <img src="/assets/images/map-thumbnail/shanghai.svg" alt="上海">
+                </div>
+                <div class="city-name">
+                    <span>上海</span>
+                    <span>SHANGHAI</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/shanghai.svg" alt="上海">
+                </div>
+            </a>
+            
+        
+            
+            
+            <a class="city no-a" href="/maps/beijing">
+                <div class="map-thumbnail">
+                    <img src="/assets/images/map-thumbnail/beijing.svg" alt="北京">
+                </div>
+                <div class="city-name">
+                    <span>北京</span>
+                    <span>BEIJING</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/beijing.svg" alt="北京">
+                </div>
+            </a>
+            
+        
+            
+            
+            <a class="city no-a" href="/maps/chongqing">
+                <div class="map-thumbnail">
+                    <img src="/assets/images/map-thumbnail/chongqing.svg" alt="重庆">
+                </div>
+                <div class="city-name">
+                    <span>重庆</span>
+                    <span>CHONGQING</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/chongqing.svg" alt="重庆">
+                </div>
+            </a>
+            
+        
+    </div>
+    </div>
+
+    <div class="break"></div>
+
+    <div id="all-maps">
+    <div class="sect-title">
+        <h1>所有线路图</h1>
+        <span class="g1">按照字母排序。</span>
+    </div>
+    <div id="maps-list" class="fl-row fl-w gap-24">
+        
+        
+        
+            
+            
+                
+                
+                <div class="maps-section fl-col">
+                    <h2 class="g1">B</h2>
+            
+            <a class="city no-a" href="/maps/beijing">
+                <div class="city-name">
+                    <span>北京</span>
+                    <span>BEIJING</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/beijing.svg" alt="北京">
+                </div>
+            </a>
+        
+            
+            
+                
+                    </div>
+                
+                
+                <div class="maps-section fl-col">
+                    <h2 class="g1">C</h2>
+            
+            <a class="city no-a" href="/maps/chongqing">
+                <div class="city-name">
+                    <span>重庆</span>
+                    <span>CHONGQING</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/chongqing.svg" alt="重庆">
+                </div>
+            </a>
+        
+            
+            
+                
+                    </div>
+                
+                
+                <div class="maps-section fl-col">
+                    <h2 class="g1">S</h2>
+            
+            <a class="city no-a" href="/maps/shanghai">
+                <div class="city-name">
+                    <span>上海</span>
+                    <span>SHANGHAI</span>
+                </div>
+                <div class="city-bar">
+                    <img src="/assets/cities/shanghai.svg" alt="上海">
+                </div>
+            </a>
+        
+            </div>
+        </div>
+    </div>
+</section>
+    <div id="slogan" class="fl-row fl-nw gap-12 jc-center two-row">
+        <span>现代的城市交通线网图</span>
+        <span>Modern Urban Transit Line Maps</span>
+    </div>
+    <footer>
+    <img src="/assets/images/site_logo.svg" alt="Chitose.City">
+    <span style="font-size: 12px;font-weight: 500;">©Project Chitose 2025</span>
+</footer>
+</body>

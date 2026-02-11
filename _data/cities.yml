@@ -1,0 +1,32 @@
+- id: shanghai
+  name: 上海
+  nameEn: SHANGHAI
+  map: shanghai.svg
+  width: 682px
+  height: 682px
+  year_color: "#E2062C"
+
+- id: beijing
+  name: 北京
+  nameEn: BEIJING
+  map: beijing.svg
+  width: 682px
+  height: 682px
+  year_color: "#003770"
+
+- id: chongqing
+  name: 重庆
+  nameEn: CHONGQING
+  map: chongqing.svg
+  width: 682px
+  height: 682px
+  year_color: "#00824C"
+
+- id: kinako
+  name: 黄豆粉
+  nameEn: KINAKO
+  map: kinako.png
+  width: 682px
+  height: 682px
+  year_color: "linear-gradient(135deg, #2462E8 0%, #5B9CF5 100%)"
+  hidden_from_list: true

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Maps by Project Chitose / 由千岁计划绘制的线路图</title>
+
+    <link rel="stylesheet" href="/assets/css/global.css">
+
+    <link rel="icon" href="favicon.svg">
+
+    <style>
+        footer {
+            width: 100%;
+            height: 72px;
+            background: radial-gradient(82.82% 100% at 50.13% 100%, rgba(79, 210, 179, 0.5) 0%, rgba(79, 210, 179, 0) 100%);
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            gap: 6px;
+            color: #0C4F3F;
+        }
+        #main {
+            padding: 32px;
+            display: flex;
+            min-height: calc(100vh - 72px);
+        }
+        section {
+            display: none;
+            flex: 1;
+            width: 100%;
+            justify-content: center;
+        }
+        section.active {
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 48px;
+            justify-content: center;
+        }
+
+        @media (max-width: 690px) {
+            section.active {
+                gap: 32px;
+            }
+        }
+        button {
+            border: none;
+            background: none;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .cn {
+            font-weight: 500;
+        }
+        .en {
+            color: var(--gray-1);
+            font-weight: 500;
+        }
+        .small {
+            font-size: 14px;
+        }
+        #enter {
+            background-color: var(--black);
+            color: white;
+            border-radius: 4px;
+            border: none;
+            font-family: LineMapsFont;
+            font-weight: 600;
+            line-height: 110%;
+            width: fit-content;
+        }
+        #enter:active {
+            background-color: var(--gray-1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+
+    <div id="logo">
+        <img src="assets/images/onboarding/logo-gray.svg" alt="Line Maps by Chitose.City">
+    </div>
+
+    <section id="act-1">
+
+        <div class="icon">
+            <img src="assets/images/onboarding/welcome.svg" alt="欢迎 Welcome">
+        </div>
+
+        <div class="contents">
+            <p class="cn">在进入本网站前，请先了解本站规则。</p>
+            <p class="en">Before entering the website, please learn the rules first. <br> The majority of this site is written in Chinese, feel free to use a translator.</p>
+        </div>
+
+        <div class="navigator">
+            <button><img id="left-btn" src="assets/images/onboarding/left.svg" alt=""></button>
+            <button><img id="right-btn" src="assets/images/onboarding/right.svg" alt=""></button>
+        </div>
+
+    </section>
+
+    <section id="act-2">
+
+        <div class="icon">
+            <img src="assets/images/onboarding/copyright.svg" alt="Copyright">
+        </div>
+
+        <div class="contents">
+            <p class="cn">本网站旨在分享由千岁计划制作的城市交通线路图等艺术创作产品。本网站所有内容著作权及其他权利由千岁计划所有。</p>
+            <p class="en">This site is designed to share city transit line maps & other artworks by Project Chitose. All rights of the contents on this site, including copyright are owned by Project Chitose.</p>
+        </div>
+
+        <div class="navigator">
+            <button><img id="left-btn" src="assets/images/onboarding/left.svg" alt=""></button>
+            <button><img id="right-btn" src="assets/images/onboarding/right.svg" alt=""></button>
+        </div>
+
+    </section>
+
+    <section id="act-3">
+
+        <div class="icon">
+            <img src="assets/images/onboarding/do.svg" alt="Do">
+        </div>
+
+        <div class="contents">
+        <p class="cn">您可以自由地在个人非商业项目中使用所有线路图，需要明确署名。</p>
+        <p class="en">You are allowed to use the line maps in personal, non-commercial projects. Appropriate credit is needed.</p>
+        </div>
+
+        <div class="navigator">
+            <button><img id="left-btn" src="assets/images/onboarding/left.svg" alt=""></button>
+            <button><img id="right-btn" src="assets/images/onboarding/right.svg" alt=""></button>
+        </div>
+        
+    </section>
+
+    <section id="act-4">
+
+        <div class="icon">
+            <img src="assets/images/onboarding/dont.svg" alt="Don't">
+        </div>
+
+        <div class="contents">
+        <p class="cn">未经授权，您不应在商业性项目使用任何线路图。 <br> 未经授权，您不应以任何形式转载、复制、翻印、修改、售卖任何线路图。</p>
+        <p class="en">Without our formal approval, you must not use any of the line maps in commercial projects. <br> Without our formal approval, you must not reprint, copy, reupload, modify, or sell any of the line maps.</p>            
+        </div>
+
+        <div class="navigator">
+            <button><img id="left-btn" src="assets/images/onboarding/left.svg" alt=""></button>
+            <button><img id="right-btn" src="assets/images/onboarding/right.svg" alt=""></button>
+        </div>
+        
+    </section>
+
+    <section id="act-5">
+
+        <div class="icon">
+            <img src="assets/images/onboarding/warn.svg" alt="Warning">
+        </div>
+
+        <div class="contents">
+        <p class="cn">在使用本站任何内容前，请留意对应页面的具体条款。</p>
+        <p class="en">Before using any content on this site, please refer to the specific terms and conditions on the corresponding page.</p>            
+        </div>
+
+        <button id="enter">进入主页 <br> ENTER SITE</button>
+
+        <div class="contents">
+        <p class="cn small">点击按钮代表你同意<a href="/maps-terms">千岁企划轨道交通线路图使用条例</a>。</p>
+        <p class="en small">By clicking the button, you agree to the <a href="/maps-terms">Project Chitose Line Maps Usage Guidelines</a>.</p>
+        </div>
+
+        <div class="navigator">
+            <button><img id="left-btn" src="assets/images/onboarding/left.svg" alt=""></button>
+            <button><img id="right-btn" src="assets/images/onboarding/right.svg" alt=""></button>
+        </div>
+        
+    </section>
+
+</div>
+
+<footer>
+    <img src="/assets/images/site_logo.svg" alt="Chitose.City">
+    <span style="font-size: 12px;font-weight: 500;">©Project Chitose 2025</span>
+</footer>
+
+<script>
+    let currentPage = 1;
+
+    function showPage(pageNum) {
+        // 隐藏所有页面
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // 显示当前页面
+        const activePage = document.getElementById(`act-${pageNum}`);
+        if (activePage) {
+            activePage.classList.add('active');
+        }
+        
+        // 更新logo
+        const logoImg = document.querySelector('#logo img');
+        if (logoImg) {
+            let logoSrc = 'assets/images/onboarding/logo-gray.svg';
+            if (pageNum === 3) {
+                logoSrc = 'assets/images/onboarding/logo-green.svg';
+            } else if (pageNum === 4) {
+                logoSrc = 'assets/images/onboarding/logo-red.svg';
+            } else if (pageNum === 5) {
+                logoSrc = 'assets/images/onboarding/logo-yellow.svg';
+            }
+            logoImg.src = logoSrc;
+        }
+        
+        // 更新按钮的opacity
+        const prevBtn = activePage?.querySelector('#left-btn')?.closest('button');
+        const nextBtn = activePage?.querySelector('#right-btn')?.closest('button');
+        
+        if (prevBtn) {
+            prevBtn.style.opacity = pageNum > 1 ? '1' : '0.5';
+        }
+        if (nextBtn) {
+            nextBtn.style.opacity = pageNum < 5 ? '1' : '0.5';
+        }
+        
+        currentPage = pageNum;
+    }
+
+    function nextPage() {
+        if (currentPage < 5) {
+            showPage(currentPage + 1);
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            showPage(currentPage - 1);
+        }
+    }
+
+    // 绑定导航按钮
+    function setupNavigators() {
+        document.querySelectorAll('section').forEach(section => {
+            const leftBtn = section.querySelector('#left-btn')?.closest('button');
+            const rightBtn = section.querySelector('#right-btn')?.closest('button');
+            
+            if (leftBtn) {
+                leftBtn.addEventListener('click', prevPage);
+            }
+            if (rightBtn) {
+                rightBtn.addEventListener('click', nextPage);
+            }
+        });
+    }
+
+    // 初始化：显示第一个页面
+    document.addEventListener('DOMContentLoaded', function() {
+        showPage(1);
+        setupNavigators();
+        
+        // 绑定 enter 按钮
+        const enterBtn = document.getElementById('enter');
+        if (enterBtn) {
+            enterBtn.addEventListener('click', function() {
+                localStorage.setItem('onboardingCompleted', 'true');
+                const intendedPage = localStorage.getItem('intendedPage');
+                if (intendedPage) {
+                    localStorage.removeItem('intendedPage');
+                    window.location.href = intendedPage;
+                } else {
+                    window.location.href = '/';
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

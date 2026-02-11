@@ -1,0 +1,37 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Maps by Project Chitose / 由千岁计划绘制的线路图</title>
+
+    <!-- 搜索引擎优化项目 -->    
+    <meta name="description" content="{{page.desc}}">
+    <meta name="keywords" content="{{page.keywords}}">
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/global.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{page.id}}.css">
+
+    <link rel="icon" href="favicon.svg">
+</head>
+<body>
+    <script>
+        // 检查用户是否已完成 onboarding
+        if (!localStorage.getItem('onboardingCompleted')) {
+            // 如果当前不在 onboarding 页面，保存当前页面地址并跳转到 onboarding 页面
+            if (!window.location.pathname.includes('onboarding')) {
+                localStorage.setItem('intendedPage', window.location.pathname);
+                window.location.href = '/onboarding';
+            }
+        }
+    </script>
+    {% include navbar.html %}
+    {{ content }}
+    <div id="slogan" class="fl-row fl-nw gap-12 jc-center two-row">
+        <span>现代的城市交通线网图</span>
+        <span>Modern Urban Transit Line Maps</span>
+    </div>
+    {% include footer.html %}
+</body>
