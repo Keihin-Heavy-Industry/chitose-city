@@ -212,18 +212,29 @@
                     return OpenSeadragon.SziTileSource;
                 });
 
-                if (initialKey) {
-                    const initialSzi = versionData[initialKey];
+                // SZI 加载函数，支持重试
+                const loadSzi = (sziUrl, retryCount = 0) => {
                     loadSziModule().then(Szi => {
                         if (Szi && Szi.createSziTileSource) {
-                            Szi.createSziTileSource(initialSzi).then(ts => viewer.open(ts)).catch(err => console.error('打开 SZI 失败', err));
+                            Szi.createSziTileSource(sziUrl).then(ts => viewer.open(ts)).catch(err => {
+                                console.error('打开 SZI 失败', err);
+                                if (err.message && err.message.includes('Content-Range header not included') && retryCount < 3) {
+                                    console.log(`重试加载 SZI (${retryCount + 1}/3)`);
+                                    loadSzi(sziUrl, retryCount + 1);
+                                }
+                            });
                         } else {
-                            try { viewer.open(initialSzi); } catch(e) { console.error(e); }
+                            try { viewer.open(sziUrl); } catch(e) { console.error(e); }
                         }
                     }).catch(err => {
                         console.error('加载 SZI 模块失败', err);
-                        try { viewer.open(initialSzi); } catch(e) { console.error(e); }
+                        try { viewer.open(sziUrl); } catch(e) { console.error(e); }
                     });
+                };
+
+                if (initialKey) {
+                    const initialSzi = versionData[initialKey];
+                    loadSzi(initialSzi);
                 }
 
                 // 预览版本选择器
@@ -233,16 +244,7 @@
                 releaseSelect.addEventListener('change', function() {
                     const selectedRelease = this.value;
                     const sziSource = versionData[selectedRelease];
-                    loadSziModule().then(Szi => {
-                        if (Szi && Szi.createSziTileSource) {
-                            Szi.createSziTileSource(sziSource).then(ts => viewer.open(ts)).catch(err => console.error('打开 SZI 失败', err));
-                        } else {
-                            try { viewer.open(sziSource); } catch(e) { console.error(e); }
-                        }
-                    }).catch(err => {
-                        console.error('加载 SZI 模块失败', err);
-                        try { viewer.open(sziSource); } catch(e) { console.error(e); }
-                    });
+                    loadSzi(sziSource);
                     
                     // 更新描述文本
                     const descriptions = {
@@ -262,15 +264,7 @@
                     cardMain.addEventListener('click', function() {
                         cardDownload.classList.toggle('active');
                     });
-                });
-                
-                viewer.addHandler('open-failed', function(event) {
-                    if (event.message.includes("SZI") || event.message.includes("Content-Range")) {
-                        console.warn("正在野鸡修复 SZI 加载问题");
-                        // 刷新页面
-                        location.reload(); 
-                    }
-                });                     
+                });     
             });
         </script>
 
