@@ -265,6 +265,16 @@
                 });
             });
         </script>
+
+        <script>
+            // 不要直接执行，等页面资源稍微加载稳一点
+            window.onload = function() {
+                setTimeout(function() {
+                    // 这里放置你的 OpenSeadragon 初始化代码
+                    var viewer = OpenSeadragon({ ... });
+                }, 500);
+            };
+        </script>
     
     <div id="slogan" class="fl-row fl-nw gap-12 jc-center two-row">
         <span>现代的城市交通线网图</span>
