@@ -2,11 +2,11 @@ shanghai:
   releases:
     "2026-1.4":
       name: "2026版 - v1.4"
-      description: "2026年线路图"
+      description: "2026年线路图。"
       szi: "/maps/file/shanghai/Shanghai-2026-1.4-Complete.szi"
     "2027-1.4":
       name: "2027版 - v1.4"
-      description: "2027年预测线路图"
+      description: "2027年预测线路图。"
       szi: "/maps/file/shanghai/Shanghai-2027-1.4-Complete.szi"
   downloads:
     "2026-complete":
@@ -74,18 +74,25 @@ shanghai:
 beijing:
   releases:
     complete:
-      name: "完整版 - v1.0"
-      description: "*已过时* 直到2025年的所有线路信息。"
-      szi: "/maps/file/beijing/Beijing-2025-1.0.szi"
+      name: "完整版 - v2.0"
+      description: "2026年线路图。"
+      szi: "/maps/file/beijing/Beijing-2026-2.0.szi"
+    test:
+      name: "test"
+      szi: "maps/file/beijing/test2048.szi"
   downloads:
-    "2025-complete":
+    "2026-complete":
       name: "完整版"
-      year: "2025"
+      year: "2026"
       include: ["subway", "tram", "railway"]
       assets:
-        png: "/maps/file/beijing/Beijing-2025-1.0.png"
-        pdf: "/maps/file/beijing/Beijing-2025-1.0.pdf"
+        png: "/maps/file/beijing/Beijing-2026-2.0.png"
+        pdf: "/maps/file/beijing/Beijing-2026-2.0.pdf"
   history:
+    - version: "2.0"
+      type: "release"
+      date: "2026-04-22"
+      brief: "更新了2026年开通的线路和站点。"
     - version: "1.0"
       type: "release"
       date: "2025-09-30"
@@ -95,11 +102,11 @@ chongqing:
   releases:
     "2025-complete":
       name: "2025 完整版 - v1.0"
-      description: "直到2025年的所有线路信息"
+      description: "直到2025年的所有线路信息。"
       szi: "/maps/file/chongqing/Chongqing-2025-1.0.szi"
     "2027-complete":
       name: "2027 完整版 - v1.0"
-      description: "2027年预测线路图"
+      description: "2027年预测线路图。"
       szi: "/maps/file/chongqing/Chongqing-2027-1.0.szi"
   downloads:
     "2025-complete":

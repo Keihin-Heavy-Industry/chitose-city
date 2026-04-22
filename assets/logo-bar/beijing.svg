@@ -1,28 +1,29 @@
 <svg width="12" height="29" viewBox="0 0 12 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="12" y="27.8857" width="1.11541" height="12" transform="rotate(90 12 27.8857)" fill="#717171"/>
-<rect x="12" y="7.80762" width="1.11541" height="12" transform="rotate(90 12 7.80762)" fill="#009B6B"/>
-<rect x="12" y="8.92285" width="1.11541" height="12" transform="rotate(90 12 8.92285)" fill="#90C320"/>
-<rect x="12" y="10.0391" width="1.11541" height="12" transform="rotate(90 12 10.0391)" fill="#019BC1"/>
-<rect x="12" y="11.1543" width="1.11541" height="12" transform="rotate(90 12 11.1543)" fill="#ED796A"/>
-<rect x="12" y="12.2695" width="1.11541" height="12" transform="rotate(90 12 12.2695)" fill="#C66B00"/>
-<rect x="12" y="13.3848" width="1.11541" height="12" transform="rotate(90 12 13.3848)" fill="#F6E614"/>
-<rect x="12" y="14.5" width="1.11541" height="12" transform="rotate(90 12 14.5)" fill="#D6A7A1"/>
-<rect x="12" y="15.6152" width="1.11541" height="12" transform="rotate(90 12 15.6152)" fill="#6A347F"/>
-<rect x="12" y="16.7314" width="1.11541" height="12" transform="rotate(90 12 16.7314)" fill="#77A22E"/>
-<rect x="12" y="17.8467" width="1.11541" height="12" transform="rotate(90 12 17.8467)" fill="#01A9AA"/>
-<rect x="12" y="18.9619" width="1.11541" height="12" transform="rotate(90 12 18.9619)" fill="#D6AAC1"/>
-<rect x="12" y="20.0781" width="1.11541" height="12" transform="rotate(90 12 20.0781)" fill="#E46022"/>
-<rect x="12" y="21.1924" width="1.11541" height="12" transform="rotate(90 12 21.1924)" fill="#E40177"/>
-<rect x="12" y="22.3076" width="1.11541" height="12" transform="rotate(90 12 22.3076)" fill="#DE82B3"/>
-<rect x="12" y="23.4238" width="1.11541" height="12" transform="rotate(90 12 23.4238)" fill="#B35A22"/>
-<rect x="12" y="24.5391" width="1.11541" height="12" transform="rotate(90 12 24.5391)" fill="#A29BBC"/>
-<rect x="12" y="25.6543" width="1.11541" height="12" transform="rotate(90 12 25.6543)" fill="#034BA0"/>
-<rect x="12" y="26.7695" width="1.11541" height="12" transform="rotate(90 12 26.7695)" fill="#E50619"/>
-<rect x="12" y="6.69238" width="1.11541" height="12" transform="rotate(90 12 6.69238)" fill="#FDCF6F"/>
-<rect x="12" y="5.57715" width="1.11541" height="12" transform="rotate(90 12 5.57715)" fill="#D19708"/>
-<rect x="12" y="4.46094" width="1.11541" height="12" transform="rotate(90 12 4.46094)" fill="#A71C81"/>
-<rect x="12" y="3.34668" width="1.11541" height="12" transform="rotate(90 12 3.34668)" fill="#008E9C"/>
-<rect x="12" y="2.23145" width="1.11541" height="12" transform="rotate(90 12 2.23145)" fill="#E70034"/>
-<rect x="12" y="1.11523" width="1.11541" height="12" transform="rotate(90 12 1.11523)" fill="#156097"/>
-<rect x="12" width="1.11541" height="12" transform="rotate(90 12 0)" fill="#C23931"/>
+<path d="M12 29.0001V27.926H0V29.0001H12Z" fill="#717171"/>
+<path d="M12 8.59263V7.51855H0V8.59263H12Z" fill="#009B6B"/>
+<path d="M12 9.6666V8.59253H0V9.6666H12Z" fill="#90C320"/>
+<path d="M12 10.7406V9.6665H0V10.7406H12Z" fill="#019BC1"/>
+<path d="M12 11.8148V10.7407H0V11.8148H12Z" fill="#ED796A"/>
+<path d="M12 12.8888V11.8147H0V12.8888H12Z" fill="#C66B00"/>
+<path d="M12 13.963V12.8889H0V13.963H12Z" fill="#F6E614"/>
+<path d="M12 15.037V13.9629H0V15.037H12Z" fill="#D6A7A1"/>
+<path d="M12 16.1112V15.0371H0V16.1112H12Z" fill="#6A347F"/>
+<path d="M12 17.1852V16.1111H0V17.1852H12Z" fill="#77A22E"/>
+<path d="M12 18.2591V17.1851H0V18.2591H12Z" fill="#01A9AA"/>
+<path d="M12 20.4076V19.3335H0V20.4076H12Z" fill="#D6AAC1"/>
+<path d="M12 19.3333V18.2593H0V19.3333H12Z" fill="#5554A2"/>
+<path d="M12 21.4815V20.4075H0V21.4815H12Z" fill="#E46022"/>
+<path d="M12 22.5555V21.4814H0V22.5555H12Z" fill="#E40177"/>
+<path d="M12 23.6297V22.5557H0V23.6297H12Z" fill="#DE82B3"/>
+<path d="M12 24.7037V23.6296H0V24.7037H12Z" fill="#B35A22"/>
+<path d="M12 25.7777V24.7036H0V25.7777H12Z" fill="#A29BBC"/>
+<path d="M12 26.8519V25.7778H0V26.8519H12Z" fill="#034BA0"/>
+<path d="M12 27.9259V26.8518H0V27.9259H12Z" fill="#E50619"/>
+<path d="M12 7.51865V6.44458H0V7.51865H12Z" fill="#FDCF6F"/>
+<path d="M12 6.44443V5.37036H0V6.44443H12Z" fill="#D19708"/>
+<path d="M12 5.37046V4.29639H0V5.37046H12Z" fill="#A71C81"/>
+<path d="M12 4.29624V3.22217H0V4.29624H12Z" fill="#008E9C"/>
+<path d="M12 3.22226V2.14819H0V3.22226H12Z" fill="#E70034"/>
+<path d="M12 2.14805V1.07397H0V2.14805H12Z" fill="#156097"/>
+<path d="M12 1.07407V0H0V1.07407H12Z" fill="#C23931"/>
 </svg>
