@@ -263,17 +263,19 @@
                         cardDownload.classList.toggle('active');
                     });
                 });
+                
+                viewer.addHandler('open-failed', function(event) {
+                    if (event.message.includes("SZI") || event.message.includes("Content-Range")) {
+                        console.warn("正在野鸡修复 SZI 加载问题");
+                        // 刷新页面
+                        location.reload(); 
+                    }
+                });                     
             });
         </script>
 
         <script>
-            viewer.addHandler('open-failed', function(event) {
-                if (event.message.includes("SZI") || event.message.includes("Content-Range")) {
-                    console.warn("正在野鸡修复 SZI 加载问题");
-                    // 刷新页面
-                    location.reload(); 
-                }
-            });        
+   
         </script>
     
     <div id="slogan" class="fl-row fl-nw gap-12 jc-center two-row">
