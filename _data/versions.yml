@@ -74,21 +74,22 @@ shanghai:
 beijing:
   releases:
     complete:
-      name: "完整版 - v2.0"
+      name: "完整版 - v2.1"
       description: "2026年线路图。"
-      szi: "/maps/file/beijing/Beijing-2026-2.0.szi"
-    test:
-      name: "test"
-      szi: "maps/file/beijing/test2048.szi"
+      szi: "/maps/file/beijing/Beijing-2026-2.1.szi"
   downloads:
     "2026-complete":
       name: "完整版"
       year: "2026"
       include: ["subway", "tram", "railway"]
       assets:
-        png: "/maps/file/beijing/Beijing-2026-2.0.png"
-        pdf: "/maps/file/beijing/Beijing-2026-2.0.pdf"
+        png: "/maps/file/beijing/Beijing-2026-2.1.png"
+        pdf: "/maps/file/beijing/Beijing-2026-2.1.pdf"
   history:
+    - version: "2.1"
+      type: "release"
+      date: "2026-04-22"
+      brief: "修复一些错误。"
     - version: "2.0"
       type: "release"
       date: "2026-04-22"
@@ -96,7 +97,7 @@ beijing:
     - version: "1.0"
       type: "release"
       date: "2025-09-30"
-      brief: "初始版本发布"
+      brief: "初始版本。"
 
 chongqing:
   releases:
@@ -127,4 +128,4 @@ chongqing:
     - version: "1.0"
       type: "release"
       date: "2025-09-13"
-      brief: "初始版本发布"
+      brief: "初始版本。"
