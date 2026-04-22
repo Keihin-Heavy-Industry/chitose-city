@@ -180,6 +180,10 @@
                     id: "openseadragon-container",
                     prefixUrl: "{{ site.baseurl }}/assets/openseadragon/images/",
                     // 初始不直接传 tileSources，后面用 SziTileSource 异步打开
+                    
+                    crossOriginPolicy: 'Anonymous',
+                    ajaxWithCredentials: false
+
                     showFullPageButton: false,
                     showRotationControl: false,
                     animationTime: 0.3,
